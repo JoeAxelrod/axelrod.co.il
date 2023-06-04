@@ -1,0 +1,45 @@
+# Dependency directories
+/react-app/node_modules/
+/node-app/node_modules/
+
+# Yarn
+/react-app/yarn-error.log
+/react-app/yarn.lock
+/node-app/yarn-error.log
+/node-app/yarn.lock
+
+# TypeScript
+/react-app/*.tsbuildinfo
+/node-app/*.tsbuildinfo
+
+# JavaScript
+/react-app/*.log
+/node-app/*.log
+
+# Lock files
+/package-lock.json
+
+# Build / dist
+/react-app/build/
+/node-app/dist/
+
+# Test
+/react-app/coverage/
+/node-app/coverage/
+
+# Public
+/react-app/public/
+
+# Generated files, caches and logs
+/logs
+/npm-debug.log*
+/yarn-debug.log*
+/yarn-error.log*
+
+# IDE - JetBrains
+/.idea
+
+# dotenv environment variables file
+/react-app/.env
+/node-app/.env
+
