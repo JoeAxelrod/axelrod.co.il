@@ -14,28 +14,28 @@ Follow these steps to get the project running on your local machine:
 First, clone the repository to your local machine:
 
 
-\```bash
+```bash
 git clone https://github.com/JoeAxelrod/node-react-AI
 cd node-react-AI
-\```
+```
 
 ### Install Dependencies
 Run the following command to install the necessary dependencies:
 
-\```bash
+```bash
 yarn install
-\```
+```
 
 ### Run MongoDB as a Docker container
 Pull the latest MongoDB image:
 
-\```bash
+```bash
 docker pull mongo
-\```
+```
 
 Start a MongoDB container:
 
-\```bash
+```bash
 docker run --name some-mongo -p 27017:27017 -d mongo
-\```
+```
 

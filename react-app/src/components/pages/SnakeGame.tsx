@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Box, Typography } from '@mui/material';
+import {Box, Container, Typography} from '@mui/material';
 
 interface CellProps {
     isSnake: boolean;
@@ -94,24 +94,38 @@ const SnakeGame: React.FC = () => {
     }, []);
 
     return (
-        <Box sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            // maxWidth: 200,
-            border: '1px solid',
-            borderColor: 'divider',
-            backgroundColor: "#000",
-        }}>
-            {board.map((row, i) => (
-                <div key={i}>
-                    {row.map((cell, j) => {
-                        const isApple = cell === "apple";
-                        const isSnake = cell === "snake";
-                        return <Cell key={`${i}-${j}`} isSnake={isSnake} isApple={isApple} />;
-                    })}
-                </div>
-            ))}
-        </Box>
+        <Container>
+
+            <Typography variant="h2" gutterBottom>
+                Welcome to the Snake Game
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+                Use the arrow keys to control the snake and try to eat as many apples as you can without colliding with yourself!
+            </Typography>
+
+
+            <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Box sx={{
+                    display: 'inline-flex',
+                    flexWrap: 'wrap',
+                    backgroundColor: "#000",
+                }}>
+                    {board.map((row, i) => (
+                        <div key={i}>
+                            {row.map((cell, j) => {
+                                const isApple = cell === "apple";
+                                const isSnake = cell === "snake";
+                                return <Cell key={`${i}-${j}`} isSnake={isSnake} isApple={isApple} />;
+                            })}
+                        </div>
+                    ))}
+                </Box>
+            </Container>
+
+
+
+
+        </Container>
     );
 
 };
