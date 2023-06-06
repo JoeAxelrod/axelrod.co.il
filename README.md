@@ -19,10 +19,18 @@ git clone https://github.com/JoeAxelrod/node-react-AI
 cd node-react-AI
 ```
 
+
+react node 16
+
+
 ### Install Dependencies
 Run the following command to install the necessary dependencies:
 
 ```bash
+cd  react-app
+yarn install 
+
+cd node-app
 yarn install
 ```
 

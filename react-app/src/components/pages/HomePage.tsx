@@ -1,14 +1,19 @@
 import React from 'react';
-import {Container, Typography} from '@mui/material';
+import {Box, Container, Typography} from '@mui/material';
 import ChatPage from './ChatPage';
+
 
 const HomePage: React.FC = () => {
     return (
         <Container>
 
-            <Typography variant="h2" gutterBottom>
-                Welcome to the Home Page
-            </Typography>
+            <Box display="flex" justifyContent="center" alignItems="center">
+                <Typography variant="subtitle1" gutterBottom sx={{ color: '#1877f2', fontSize: '14px' }}>
+                    - React.js Node.js AI project -
+                </Typography>
+            </Box>
+
+
             <ChatPage/>
         </Container>
     );

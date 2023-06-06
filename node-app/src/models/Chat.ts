@@ -1,9 +1,28 @@
-import mongoose from "mongoose";
+import mongoose, { Document } from "mongoose";
 import { IUser } from "./User";
 
-// Use the same interface name for the user that you used when defining the User model
-interface IUserRef extends mongoose.Types.ObjectId {
+export enum UserType {
+    AI = "ai",
+    HUMAN = "human"
+}
+
+export interface IMessage extends Document {
+    text: string;
+    user_type: UserType;
+    createdAt: Date;
+}
+
+export interface IUserRef extends Document {
     _id: IUser["_id"];
+}
+
+interface IChat extends Document {
+    user_id: IUserRef;
+    messages: IMessage[];
+}
+
+interface IChatModel extends mongoose.Model<IChat> {
+    updateOrCreate(user_id: IUserRef, user_type: UserType, text: string): Promise<IChat>;
 }
 
 const ChatSchema = new mongoose.Schema({
@@ -12,21 +31,18 @@ const ChatSchema = new mongoose.Schema({
         required: true,
         ref: "User",
     },
-    name: {
-        type: String,
-        required: true,
-    },
     messages: [
         {
-            author: {
-                type: mongoose.Schema.Types.ObjectId,
-                required: true,
-                ref: "User",
-            },
             text: {
                 type: String,
                 required: true,
             },
+            user_type: {
+                type: String,
+                required: true,
+                enum: Object.values(UserType)
+            },
+
             createdAt: {
                 type: Date,
                 required: true,
@@ -35,12 +51,36 @@ const ChatSchema = new mongoose.Schema({
     ],
 });
 
-const Chat = mongoose.model("Chat", ChatSchema);
+ChatSchema.statics.updateOrCreate = async function(user_id: IUserRef, user_type: UserType, text: string): Promise<IChat> {
+    let chat = await this.findOne({ user_id: user_id }) as IChat;
+
+    if (chat) {
+        // If chat exists for the user, push new message
+        chat.messages.push(<IMessage>{
+            text: text,
+            user_type: user_type,
+            createdAt: new Date(),
+        });
+    } else {
+        // If no chat exists, create a new chat for the user
+        chat = new this({
+            user_id: user_id,
+            messages: [{
+                text: text,
+                user_type: user_type,
+                createdAt: new Date(),
+            }],
+        }) as IChat;
+    }
+
+    return chat.save();
+}
+
+const Chat = mongoose.model<IChat, IChatModel>("Chat", ChatSchema);
 
 // Create the "Chat" collection in MongoDB
 Chat.collection.createIndex({
-    user_id: 1,
-    name: 1,
+    user_id: 1
 });
 
 export default Chat;
