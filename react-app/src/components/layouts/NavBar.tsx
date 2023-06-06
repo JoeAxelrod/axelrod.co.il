@@ -8,7 +8,7 @@ const NavBar: React.FC = () => {
         <AppBar position="static">
             <Toolbar>
                 <Typography variant="h6" style={{ flexGrow: 1 }}>
-                    My App
+                    React Node AI project
                 </Typography>
                 <Button color="inherit" component={RouterLink} to="/">
                     Home
