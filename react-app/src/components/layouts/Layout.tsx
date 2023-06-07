@@ -7,19 +7,18 @@ interface LayoutProps {
     children: ReactNode;
 }
 
-
 const MobilePadding = styled('div')(({ theme }) => ({
+    // Remove padding on screens larger than small
     [theme.breakpoints.up('sm')]: {
-        padding: '0', // Remove padding on screens larger than small
+        padding: '0',
     },
+    // Add padding on extra small screens (mobile)
     [theme.breakpoints.down('sm')]: {
-        padding: theme.spacing(2), // Add padding on extra small screens (mobile)
+        padding: theme.spacing(2),
     },
 }));
 
-
-
-
+// Layout component that centers its children and adjusts its padding based on screen size
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <MobilePadding>

@@ -1,40 +1,46 @@
-import { Socket, Server } from 'socket.io';
-import dotenv from 'dotenv';
 import { OpenAI } from "langchain/llms/openai";
-import { BufferMemory } from "langchain/memory";
 import { ConversationChain } from "langchain/chains";
-import { ChatMessageHistory } from "langchain/memory";
-import { HumanChatMessage, AIChatMessage } from "langchain/schema";
+import { AIChatMessage, HumanChatMessage } from "langchain/schema";
+import { BufferMemory, ChatMessageHistory } from "langchain/memory";
+import { Socket, ChatMsgData } from "./index";
+import Chat, { UserType } from "./../models/Chat";
 
-
-dotenv.config();
-
-export const handleChatMessage = async (io: Server, socket: Socket): Promise<void> => {
-    socket.on('chat message', async (msg: string): Promise<void> => {
-        console.log('Message: ' + msg);
-        // Broadcast the chat message to all connected users
-
-
-        const model = new OpenAI({});
-        const pastMessages = [
-            new HumanChatMessage("My name's Jonas"),
-            new AIChatMessage("Nice to meet you, Jonas!"),
-        ];
-
-        const memory = new BufferMemory({
-            chatHistory: new ChatMessageHistory(pastMessages),
-            memoryKey: "chat_history",
-        });
-        const chain = new ConversationChain({ llm: model, memory: memory });
-
-
-
-        // const res1 = await chain.call({ input: "Hi! I'm Jim." });
-        // console.log({ res1 });
-
-        // const res2 = await chain.call({ input: "What's my name?" });
-        // console.log(res2.response);
-
-
-    });
+interface ChatHistory {
+    user_id: string;
+    messages: {
+        user_type: UserType;
+        text: string;
+    }[];
 }
+
+export const handleChatConversation = async (socket: Socket, msgData: ChatMsgData): Promise<void> => {
+    try {
+        const memoryMessages: ChatHistory | null = await Chat.findOne({user_id: socket.user?._id});
+
+        const pastMessages = memoryMessages?.messages.map((message) => {
+            return message.user_type === UserType.HUMAN
+                ? new HumanChatMessage(message.text)
+                : new AIChatMessage(message.text);
+        }) || [];
+
+        const memory = new BufferMemory({chatHistory: new ChatMessageHistory(pastMessages)});
+        const model = new OpenAI({});
+        const chain = new ConversationChain({llm: model, memory: memory});
+
+        const aiRes = await chain.call({input: msgData.message});
+
+        const res = {
+            user_type: UserType.AI,
+            message: aiRes.response,
+        };
+
+        socket.emit('chat message', res);
+
+        await Chat.updateOrCreate(socket.user?._id, UserType.HUMAN, msgData.message);
+        await Chat.updateOrCreate(socket.user?._id, UserType.AI, aiRes.response);
+
+    } catch (error) {
+        console.error('Error saving chat:', error);
+        socket.emit('chat message', error);
+    }
+};

@@ -1,10 +1,17 @@
 import { Server } from "socket.io";
-import { handleChatMessage } from './chat-plugin';
-import User, {IUser} from "../models/User";
-import {Socket as BaseSocket} from "socket.io/dist/socket";
+import { handleChatPlugin } from './chat-plugin';
+import { handleChatConversation } from './chat-conversation';
+import User, { IUser } from "../models/User";
+import { Socket as BaseSocket } from "socket.io/dist/socket";
 
 export interface Socket extends BaseSocket {
     user?: IUser;
+}
+
+export interface ChatMsgData {
+    isPluginMode?: boolean;
+    pluginManifestUrl: string;
+    message: string;
 }
 
 export const initSockets = (io: Server): void => {
@@ -22,7 +29,10 @@ export const initSockets = (io: Server): void => {
 
         socket.user = user;
 
-
-        await handleChatMessage(io, socket);
+        socket.on('chat message', async (msgData: ChatMsgData): Promise<void> => {
+            msgData.isPluginMode
+                ? await handleChatPlugin(socket, msgData)
+                : await handleChatConversation(socket, msgData);
+        });
     });
 }

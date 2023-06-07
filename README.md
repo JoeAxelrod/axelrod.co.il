@@ -1,6 +1,6 @@
 # Node-React AI Chat & Snake Game
 
-![Screenshot-chat.png](repo-images%2FScreenshot-chat.png)
+<img src="repo-images%2FScreenshot-chat.png" alt="Screenshot-chat" width="500"/>
 
 This project is an illustration of traditional web technologies harmoniously integrated with Artificial Intelligence. It consists of a Node.js application and a React.js application hosted in the same repository for an easy end-to-end view of the project.
 
@@ -45,7 +45,7 @@ To use the chat:
 
 ## The Snake AI Game
 
-![Screenshot-snake.png](repo-images%2FScreenshot-snake.png)
+<img src="repo-images%2FScreenshot-snake.png" alt="Screenshot-snake" width="500"/>
 
 The Snake AI Game uses TensorFlow.js to train a snake to play the game. It aims to provide an intuitive understanding of AI and neural networks.
 
@@ -95,17 +95,6 @@ This project utilizes a variety of technologies, including:
 - OpenAI GPT-3
 - Yarn
 - TypeScript
-
-## About the Project
-
-This project was built to make learning AI and training neural networks more intuitive. The goal is to create an interactive interface to learn through experience. The project provides a chat with a language model in two modes:
-
-- Mode A: Conversation with long-term memory, through prompt engineering using js.langchain.com.
-- Mode B: Dynamic use of chatGPT plugins.
-
-The technology stack is TS, Node, Socket, Mongoose, and more (extracted from package.json).
-
-The structure is node-app and react-app in the same repo to allow an easy end-to-end view of the project. This is phase 1 of the project, where you can watch the network learn in real time. However, the original goal was to allow the user to play with the hyperparameters of the model (the number of layers, the number of neurons, the error functions, the learning rate, the level of randomness [exploration vs exploitation], and more) and to allow the user to understand in depth through experience and observation how to develop a trained and efficient model.
 
 
 ## Contact

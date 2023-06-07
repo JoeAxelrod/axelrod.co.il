@@ -1,4 +1,4 @@
-import mongoose, { Document } from "mongoose";
+import mongoose, { Document, Schema, Model } from "mongoose";
 import { IUser } from "./User";
 
 export enum UserType {
@@ -21,13 +21,13 @@ interface IChat extends Document {
     messages: IMessage[];
 }
 
-interface IChatModel extends mongoose.Model<IChat> {
+interface IChatModel extends Model<IChat> {
     updateOrCreate(user_id: IUserRef, user_type: UserType, text: string): Promise<IChat>;
 }
 
-const ChatSchema = new mongoose.Schema({
+const ChatSchema: Schema = new Schema({
     user_id: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         required: true,
         ref: "User",
     },
@@ -42,7 +42,6 @@ const ChatSchema = new mongoose.Schema({
                 required: true,
                 enum: Object.values(UserType)
             },
-
             createdAt: {
                 type: Date,
                 required: true,
@@ -76,7 +75,7 @@ ChatSchema.statics.updateOrCreate = async function(user_id: IUserRef, user_type:
     return chat.save();
 }
 
-const Chat = mongoose.model<IChat, IChatModel>("Chat", ChatSchema);
+const Chat: IChatModel = mongoose.model<IChat, IChatModel>("Chat", ChatSchema);
 
 // Create the "Chat" collection in MongoDB
 Chat.collection.createIndex({

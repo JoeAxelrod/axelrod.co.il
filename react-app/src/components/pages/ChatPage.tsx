@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { TextField, Button, Grid, Typography, Switch, CircularProgress, Box } from '@mui/material';
 import io, { Socket } from 'socket.io-client';
 
-const SOCKET_SERVER_URL = "http://localhost:3001";
+
+const SOCKET_SERVER_URL = process.env.REACT_APP_SOCKET_SERVER_URL || "http://localhost:3001";
 
 enum UserType {
     HUMAN = 'human',
@@ -24,9 +25,11 @@ const ChatPage: React.FC = () => {
     const socketRef = useRef<Socket | null>(null);
     const chatRef = useRef<HTMLDivElement | null>(null);
 
+    // Handle the connection and message events from the socket
     useEffect(() => {
         socketRef.current = io(SOCKET_SERVER_URL);
 
+        // Handle incoming chat messages
         socketRef.current.on('chat message', (message: IMessage) => {
             setChat((chat) => [...chat, {
                 userType: UserType.AI,
@@ -39,6 +42,7 @@ const ChatPage: React.FC = () => {
             setIsLoading(false);
         }, 500);
 
+        // Disconnect the socket when the component unmounts
         return () => {
             if (socketRef.current) {
                 socketRef.current.disconnect();
@@ -46,12 +50,14 @@ const ChatPage: React.FC = () => {
         };
     }, []);
 
+    // Keep the chat scrolled to the bottom when new messages come in
     useEffect(() => {
         if (chatRef.current !== null) {
             chatRef.current.scrollTop = chatRef.current.scrollHeight;
         }
     }, [chat]);
 
+    // Handle sending messages
     const sendMessage = (event: React.FormEvent) => {
         event.preventDefault();
         setIsLoading(true);
@@ -70,6 +76,7 @@ const ChatPage: React.FC = () => {
         setMessage('');
     };
 
+    // Handle switching between conversation and plugin mode
     const toggleMode = () => {
         if (!isPluginMode) {
             setMessage('what t shirts are available in klarna?');
@@ -85,7 +92,6 @@ const ChatPage: React.FC = () => {
             <Typography variant="h4" component="h1">
                 GPT Chat
             </Typography>
-
             <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'center' }}>
                 <Grid item>
                     <Typography color={isPluginMode ? 'textSecondary' : 'primary'}>
@@ -104,8 +110,6 @@ const ChatPage: React.FC = () => {
                     </Typography>
                 </Grid>
             </Grid>
-
-
             <div ref={chatRef} style={{ height: '35vh', overflowY: 'auto' }}>
                 {chat.map((chat, index) => (
                     <Grid container direction={chat.userType === UserType.AI ? 'row-reverse' : 'row'} key={index}>
@@ -147,7 +151,6 @@ const ChatPage: React.FC = () => {
                     {isLoading && <CircularProgress />}
                 </Box>
             </div>
-
             <form onSubmit={sendMessage} style={{ marginTop: '20px' }}>
                 <Grid container spacing={2}>
                     {isPluginMode && (
@@ -161,8 +164,6 @@ const ChatPage: React.FC = () => {
                             onChange={(e) => setPluginManifestUrl(e.target.value)}
                         />
                     </Grid>)}
-
-
                     <Grid item xs={12}>
                         <TextField
                             label="Usert message"
@@ -174,8 +175,6 @@ const ChatPage: React.FC = () => {
                             onChange={(e) => setMessage(e.target.value)}
                         />
                     </Grid>
-
-
                     <Grid item xs={12}>
                         <Button variant="contained" type="submit" color="primary" fullWidth>
                             Send
@@ -183,8 +182,6 @@ const ChatPage: React.FC = () => {
                     </Grid>
                 </Grid>
             </form>
-
-
         </div>
     );
 };

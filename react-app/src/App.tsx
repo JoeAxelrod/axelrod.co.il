@@ -1,14 +1,18 @@
-import React, {Fragment} from 'react';
+import React, { FC } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CssBaseline } from '@mui/material';
+
+// Layout Components
 import NavBar from './components/layouts/NavBar';
+import Layout from './components/layouts/Layout';
+
+// Pages
 import HomePage from './components/pages/HomePage';
 import AboutPage from './components/pages/AboutPage';
-import ContactUs from "./components/pages/ContactUs";
-import Layout from './components/layouts/Layout';
 import SnakeGame from "./components/pages/SnakeGame";
+import ContactUs from "./components/pages/ContactUs";
 
-const App: React.FC = () => {
+const App: FC = () => {
     return (
         <Router>
             <CssBaseline />
