@@ -4,7 +4,7 @@
 
 This project is an illustration of traditional web technologies harmoniously integrated with Artificial Intelligence. It consists of a Node.js application and a React.js application hosted in the same repository for an easy end-to-end view of the project.
 
-The home page features a chat interface with a language model, integrated in two modes: Mode A allows a conversation with long-term memory using prompt engineering powered by [LangChain](https://js.langchain.com). Mode B dynamically integrates with chatGPT plugins.
+The home page features a chat interface with a language model, powered by [LangChain](https://js.langchain.com), integrated in two modes: Mode A allows a conversation with long-term memory using prompt engineering. Mode B dynamically integrates with chatGPT plugins.
 
 A special feature of the project is the AI Snake Game, designed for learning AI by training the game with TensorFlow.js. Users can observe the network learning in real-time and modify various hyperparameters of the model for a more in-depth understanding of AI model development.
 
@@ -20,6 +20,16 @@ Clone the repository to your local machine:
 ```bash
 git clone https://github.com/JoeAxelrod/node-react-AI
 cd node-react-AI
+```
+```bash
+cd node-app
+yarn install
+yarn start
+```
+```bash
+cd react-app
+yarn install
+yarn start
 ```
 
 ## Project Structure
@@ -66,7 +76,7 @@ For any other questions, please open an issue with the question and we'll do our
 
 
 The server will start on http://localhost:3001.
-The server will start on http://localhost:3000.
+The client will start on http://localhost:3000.
 
 ## Usage
 
@@ -75,11 +85,6 @@ The server will start on http://localhost:3000.
 3. Press Enter to send the message.
 4. The language model will generate a response.
 
-## Features
-
-* Supports two modes of conversation:
-    * Mode A: Conversation with long-term memory, through prompt engineering using js.langchain.com.
-    * Mode B: Dynamic use of chatGPT plugins.
 
 ## Technologies Used
 
