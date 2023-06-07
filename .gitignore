@@ -28,7 +28,7 @@
 /node-app/coverage/
 
 # Public
-/react-app/public/*
+#/react-app/public/*
 
 # Generated files, caches and logs
 /logs
