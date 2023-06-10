@@ -27,7 +27,6 @@ let prevDistanceToFood: string | number | null = null;
 // Possible directions for the snake to move
 const directions  = ['top', 'bottom', 'left', 'right'];
 
-let sumReward = 0;
 
 const model: tf.Sequential = tf.sequential();
 model.add(tf.layers.dense({units: 256, activation: 'relu', inputShape: [stateLength]}));
@@ -109,7 +108,6 @@ export async function moveSnake(): Promise<{
     }
 
 
-    sumReward += reward;
     prevDistanceToFood = newDistanceToFood;
 
     if (reward < -1) {
@@ -341,7 +339,6 @@ export function newGame() {
     games++;
     apples = 0;
     steps = [];
-    sumReward = 0;
     snake = [{ top: 4, left: 4 }]; // Snake starts in the middle of our 10x10 grid
     apple = { top: 7, left: 7 }; // Apple starts at the bottom right
 
