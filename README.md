@@ -1,5 +1,7 @@
 # Node-React AI Chat & Snake Game
 
+The project is deployed at [https://axelrod.co.il](https://axelrod.co.il).
+
 <img src="repo-images%2FScreenshot-chat.png" alt="Screenshot-chat" width="500"/>
 
 This project is an illustration of traditional web technologies harmoniously integrated with Artificial Intelligence. It consists of a Node.js application and a React.js application hosted in the same repository for an easy end-to-end view of the project.
