@@ -20,7 +20,7 @@ const Cell: React.FC<CellProps> = ({ isSnakeHead, isSnakeBody, isApple }) => {
             <Typography fontSize={20}>
                 {isApple ? "🍎" : ""}
                 {isSnakeHead ? "🤩" : ""}
-                {isSnakeBody ? "🦠" : ""}
+                {isSnakeBody ? "🟢" : ""}
             </Typography>
 
         </Box>
@@ -81,28 +81,27 @@ const SnakeGame: React.FC = () => {
 
     return (
         <Container>
-            <Typography variant="h6" gutterBottom mt={2} mb={1} style={{ textAlign: 'center' }}>
+            <Typography variant="h6" gutterBottom mt={4} mb={2} style={{ textAlign: 'center' }}>
                 Welcome to the snake AI project!
             </Typography>
-            <Typography variant="body2" gutterBottom sx={{ fontSize: '12px'}}>
+            <Typography variant="body2" gutterBottom sx={{ fontSize: '14px', mb: 1 }}>
                 This project was built to make learning AI and training neural networks more intuitive.
             </Typography>
-            <Typography variant="body2" gutterBottom sx={{ fontSize: '12px'}}>
+            <Typography variant="body2" gutterBottom sx={{ fontSize: '14px', mb: 1 }}>
                 The goal is to create an interactive interface to learn through experience.
             </Typography>
-            <Typography variant="body2" gutterBottom sx={{ fontSize: '12px'}}>
+            <Typography variant="body2" gutterBottom sx={{ fontSize: '14px', mb: 1 }}>
                 This is phase 1 of the project, where you can watch the network learn in real time. However, the original goal was to allow the user to play the hyperparameters of the model (the number of layers, the number of neurons, the error functions, the learning rate, the level of randomness [exploration vs exploitation] and more) and to allow the user to understand in depth through experience and observation how to develop a trained and efficient model.
             </Typography>
-            <Typography variant="body2" gutterBottom sx={{ fontSize: '12px'}}>
+            <Typography variant="body2" gutterBottom sx={{ fontSize: '14px', mb: 1 }}>
                 I hope that one day I will find the time to continue the project, in the meantime a rough draft is shown here - but hey! This snake has a brain and while you read this he had time to learn!
             </Typography>
-            <Typography variant="body2" gutterBottom mb={1} sx={{ fontSize: '12px'}}>
+            <Typography variant="body2" gutterBottom mb={1} sx={{ fontSize: '14px', mb: 1}}>
                 It usually takes the snake about 60 games to learn. Worth the wait! 🤩🐍
             </Typography>
-
-
-            <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
-                <Box sx={{ display: 'inline-flex', flexWrap: 'wrap', backgroundColor: "#000",  minWidth: 240 }}>
+            
+            <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', m: 2 }}>
+                <Box sx={{ display: 'inline-flex', flexWrap: 'wrap', backgroundColor: "#000",  minWidth: 240, m: 2 }}>
                     {board.map((row, i) => (
                         <div key={i}>
                             {row.map((cell, j) => {
@@ -117,9 +116,7 @@ const SnakeGame: React.FC = () => {
                         </div>
                     ))}
                 </Box>
-
-
-                <Container sx={{ width: 200 }}>
+                <Container sx={{ width: 200, m: 2 }}>
                     <Typography variant="body1">
                         Learning rate: 0.0001
                     </Typography>
@@ -135,7 +132,6 @@ const SnakeGame: React.FC = () => {
                     <Typography variant="body1" style={{ color: stepData.reward < 0 ? 'red' : 'green' }}>
                         Reward: {stepData.reward}
                     </Typography>
-
                     <Typography variant="body1">
                         Loss: {stepData.loss}
                     </Typography>
@@ -143,6 +139,7 @@ const SnakeGame: React.FC = () => {
             </Container>
         </Container>
     );
+    
 
 };
 

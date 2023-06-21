@@ -3,7 +3,7 @@ import { TextField, Button, Grid, Typography, Switch, CircularProgress, Box } fr
 import io, { Socket } from 'socket.io-client';
 
 
-const SOCKET_SERVER_URL = (process.env.REACT_APP_SOCKET_SERVER_URL || "http://localhost:3001/api");
+const SOCKET_SERVER_URL = (process.env.REACT_APP_SOCKET_SERVER_URL || "http://localhost:3001");
 
 enum UserType {
     HUMAN = 'human',
@@ -27,6 +27,7 @@ const ChatPage: React.FC = () => {
 
     // Handle the connection and message events from the socket
     useEffect(() => {
+        console.log("SOCKET_SERVER_URL", SOCKET_SERVER_URL)
         socketRef.current = io(SOCKET_SERVER_URL);
 
         // Handle incoming chat messages
