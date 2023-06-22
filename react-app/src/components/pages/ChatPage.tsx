@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { TextField, Button, Grid, Typography, Switch, CircularProgress, Box } from '@mui/material';
 import io, { Socket } from 'socket.io-client';
+import { Helmet } from "react-helmet";
 
 
 const SOCKET_SERVER_URL = (process.env.REACT_APP_SOCKET_SERVER_URL || "http://localhost:3001");
@@ -89,10 +90,26 @@ const ChatPage: React.FC = () => {
     }
 
     return (
-        <div>
+        <>
             <Typography variant="h4" component="h1">
-                GPT Chat
+                Prompt Engineering with OpenAI Plugins and Long Memory Conversation
             </Typography>
+            <Typography variant="body2" gutterBottom sx={{ fontSize: '14px', mb: 1 }}>
+                This page is a demonstration of how to leverage prompt engineering using OpenAI's plugins in building sophisticated chatbots. You can learn to employ long memory conversation in your applications to create more contextual and engaging user interactions. Please follow these guides for more information:
+            </Typography>
+            <div>
+                <ul>
+                    <li>
+                        <a href="https://js.langchain.com/docs/" target="_blank" rel="noreferrer">JS Langchain Docs</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/JoeAxelrod/node-react-AI/tree/main/node-app/src/socket" target="_blank" rel="noreferrer">Server Code</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/JoeAxelrod/node-react-AI/blob/main/react-app/src/components/pages/ChatPage.tsx" target="_blank" rel="noreferrer">Client Code</a>
+                    </li>
+                </ul>
+            </div>
             <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'center' }}>
                 <Grid item>
                     <Typography color={isPluginMode ? 'textSecondary' : 'primary'}>
@@ -183,7 +200,7 @@ const ChatPage: React.FC = () => {
                     </Grid>
                 </Grid>
             </form>
-        </div>
+        </>
     );
 };
 

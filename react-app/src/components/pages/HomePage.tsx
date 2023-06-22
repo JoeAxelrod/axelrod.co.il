@@ -45,7 +45,7 @@ const HomePage: React.FC = () => {
                 </Box>
 
                 <Typography variant="body1" color="text.secondary" mt={2}>
-                    On this site, you'll find projects such as a <Link href="https://apibot.chat/" target="_blank" rel="noopener noreferrer">WhatsApp bot</Link> (yes, it's free!) and an AI-based <Link href="/snake-ai">snake game</Link> that learns to grow a brain and play by itself. Plus, who doesn't love a good algorithm challenge? Let's build one that can compete with Stockfish in chess! <Link href="/algo-chess">Have a look</Link>.
+                    On this site, you'll find projects such as a <Link href="https://apibot.chat/" target="_blank" rel="noopener noreferrer">WhatsApp bot</Link> (yes, it's free!) and an AI-based <Link href="/snake-ai">snake game</Link> that learns to grow a brain and play by itself. Plus, who doesn't love a good algorithm challenge? Let's build one that can compete with Stockfish in chess! <Link href="/minimax-chess">Have a look</Link>.
                 </Typography>
             </Container>
         </>
