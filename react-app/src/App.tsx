@@ -12,8 +12,9 @@ import ApibotPage from './components/pages/ApibotPage';
 import SnakeGame from "./components/pages/SnakeGame";
 import ChatPage from "./components/pages/ChatPage";
 import ContactUs from "./components/pages/ContactUs";
-import MinimaxTicTacToe from "./components/pages/MinimaxTicTacToe"; // import MinimaxTicTacToe component
-import MinimaxChess from "./components/pages/MinimaxChess"; // import MinimaxChess component
+import MinimaxTicTacToe from "./components/pages/MinimaxTicTacToe"; 
+import MinimaxChess from "./components/pages/MinimaxChess"; 
+import MusicPage from './components/pages/Music';
 
 const App: FC = () => {
     return (
@@ -28,8 +29,9 @@ const App: FC = () => {
                     <Route path="/snake-ai" element={<SnakeGame />} />
                     <Route path="/prompt" element={<ChatPage />} />
                     <Route path="/contact" element={<ContactUs />} />
-                    <Route path="/minimax-tictactoe" element={<MinimaxTicTacToe />} /> {/* Add MinimaxTicTacToe route */}
-                    <Route path="/minimax-chess" element={<MinimaxChess />} /> {/* Add MinimaxChess route */}
+                    <Route path="/minimax-tictactoe" element={<MinimaxTicTacToe />} /> 
+                    <Route path="/minimax-chess" element={<MinimaxChess />} /> 
+                    <Route path="/music" element={<MusicPage />} /> 
                 </Routes>
             </Layout>
         </Router>
