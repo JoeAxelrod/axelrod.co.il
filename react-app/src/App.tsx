@@ -15,6 +15,7 @@ import ContactUs from "./components/pages/ContactUs";
 import MinimaxTicTacToe from "./components/pages/MinimaxTicTacToe"; 
 import MinimaxChess from "./components/pages/MinimaxChess"; 
 import MusicPage from './components/pages/Music';
+import GithubActionPage from './components/pages/GithubActionPage';
 
 const App: FC = () => {
     return (
@@ -32,6 +33,7 @@ const App: FC = () => {
                     <Route path="/minimax-tictactoe" element={<MinimaxTicTacToe />} /> 
                     <Route path="/minimax-chess" element={<MinimaxChess />} /> 
                     <Route path="/music" element={<MusicPage />} /> 
+                    <Route path="/github-actions" element={<GithubActionPage />} /> 
                 </Routes>
             </Layout>
         </Router>

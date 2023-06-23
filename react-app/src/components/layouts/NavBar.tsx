@@ -30,6 +30,7 @@ const NavBar: React.FC = () => {
         { link: "/api-bot", title: "Whatsapp Bot", icon: <ChatIcon /> },
         { link: "/minimax-tictactoe", title: "Tic Tac Toe", icon: <GamesIcon /> },
         { link: "/minimax-chess", title: "Chess", icon: <GamesIcon /> },
+        // { link: "/github-actions", title: "Github actions", icon: <GamesIcon /> },
     ];
     
     
