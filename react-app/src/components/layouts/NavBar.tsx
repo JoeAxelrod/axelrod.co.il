@@ -23,7 +23,7 @@ const NavBar: React.FC = () => {
     };
 
     const menuItems = [
-        { link: "/", title: "Home", icon: <HomeIcon /> },
+        { link: "/", title: "Home 🏠", icon: <HomeIcon /> },
         { link: "/snake-ai", title: "Snake Game", icon: <VideogameAssetIcon /> },
         { link: "/prompt", title: "Prompt", icon: <ChatIcon /> },
         { link: "/music", title: "Music 🎸", icon: <ChatIcon /> },
