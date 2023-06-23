@@ -20,7 +20,7 @@ const HomePage: React.FC = () => {
             <Container>
                 <Box display="flex" justifyContent="center" alignItems="center" mt={2} mb={2}>
                     <Typography variant="h4" color="text.primary">
-                        Science and tech is everything
+                        Science and tech are everything
                     </Typography>
                 </Box>
 
