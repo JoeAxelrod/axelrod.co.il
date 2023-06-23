@@ -47,6 +47,18 @@ const HomePage: React.FC = () => {
                 <Typography variant="body1" color="text.secondary" mt={4}>
                     On this site, you'll find projects such as a <Link href="https://apibot.chat/" target="_blank" rel="noopener noreferrer">WhatsApp bot</Link> (yes, it's free!) and an AI-based <Link href="/snake-ai">snake game</Link> that learns to grow a brain and play by itself. Plus, who doesn't love a good algorithm challenge? Let's build one that can compete with Stockfish in chess! <Link href="/minimax-chess">Have a look</Link>.
                 </Typography>
+
+
+                <Box mt={7} p={2} style={{ backgroundColor: '#f0f0f0', borderRadius: '10px'}}>
+                    <Typography variant="h5" color="text.primary" align="center">
+                        Don't miss my last post!
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary" mt={2} style={{ fontSize: '1.1rem', textAlign: 'center' }}>
+                        Dive deep into the simplicity and power of GitHub Actions.
+                        <Link href="/github-actions" style={{ marginLeft: '5px' }}>Read here!</Link>
+                    </Typography>
+                </Box>
+
             </Container>
         </>
     );
