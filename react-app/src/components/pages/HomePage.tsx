@@ -48,7 +48,7 @@ const HomePage: React.FC = () => {
                     borderRadius: '10px',
                     boxShadow: '0 3px 10px rgba(0, 0, 0, 0.2)'
                 }}>
-                    <Typography variant="h1" color="text.primary" gutterBottom>
+                    <Typography variant="h3" color="text.primary" gutterBottom>
                         Understanding Node.js and Multithreading
                     </Typography>
                     <Typography variant="subtitle1" color="text.secondary" paragraph>
