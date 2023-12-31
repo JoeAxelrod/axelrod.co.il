@@ -49,53 +49,60 @@ const HomePage: React.FC = () => {
                     boxShadow: '0 3px 10px rgba(0, 0, 0, 0.2)'
                 }}>
                     <Typography variant="h3" color="text.primary" gutterBottom>
-                        Understanding Node.js and Multithreading
+                        Node.js: Single Threaded or Multithreaded?
                     </Typography>
                     <Typography variant="subtitle1" color="text.secondary" paragraph>
-                        Node.js is renowned for its efficiency and speed in handling I/O-bound tasks, but does it only
-                        run on one thread? Let's explore.
+                        Debunking myths and understanding the true nature of Node.js and its threading capabilities.
                     </Typography>
                     <Typography variant="body1" color="text.secondary" paragraph>
-                        Node.js primarily operates on a single thread, the event loop, which is ideal for I/O-bound
-                        tasks. This design choice is intentional as Node.js servers typically handle API calls and
-                        coordinate I/O operations rather than performing heavy computational tasks. The event loop
-                        efficiently manages asynchronous operations, making Node.js a top choice for web servers and
-                        RESTful APIs.
+                        1. The NodeJS main process runs on only one thread.
                     </Typography>
                     <Typography variant="body1" color="text.secondary" paragraph>
-                        While Node.js excels in single-threaded scenarios, there are ways to harness multiple threads
-                        for CPU-bound tasks. Node.js offers the <code>cluster</code> module, which allows applications
-                        to spawn multiple processes (workers). These workers can run on separate CPU cores, thereby
-                        distributing the workload.
+                        2. NodeJS activates through its famous event loop mechanism many threads that do asynchronous
+                        operations of reading and writing, DB queries, timing operations, and web requests, or in short,
+                        all I/O operations.
                     </Typography>
                     <Typography variant="body1" color="text.secondary" paragraph>
-                        However, multithreading introduces complexity: inter-process communication becomes necessary,
-                        and tools like Redis may be employed for managing shared state and message passing between
-                        processes. Developing and maintaining a multithreaded application is more intricate due to
-                        potential issues like race conditions and deadlocks.
+                        3. It is possible to run a NodeJS server with multiple threads and all of them will serve one
+                        server and domain and port.
                     </Typography>
                     <Typography variant="body1" color="text.secondary" paragraph>
-                        In the realm of server development, a stateless architecture is often recommended. It simplifies
-                        scaling as each request can be treated independently, allowing for horizontal scaling. This
-                        approach aligns well with Node.js’s strengths in handling I/O-bound tasks.
+                        4. It will indeed be more efficient in CPU calculations.
                     </Typography>
                     <Typography variant="body1" color="text.secondary" paragraph>
-                        Parallel processing, when done correctly, can indeed boost performance. However, in a typical
-                        Node.js application scenario, leveraging all available CPU threads may not yield significant
-                        benefits, especially if the workload is not CPU-intensive.
+                        5. But if the bottleneck of your server is CPU - you are doing something very, very wrong.
                     </Typography>
                     <Typography variant="body1" color="text.secondary" paragraph>
-                        Node.js is optimized for I/O-bound operations and shines in this area due to its single-threaded
-                        event loop. While it's possible to employ multithreading for CPU-bound tasks, this comes with
-                        added complexity and potential challenges. The key is to understand your application’s
-                        requirements and choose the architecture that best fits its workload profile.
+                        6. A server should not do logic but answer calls and run I/O processes.
                     </Typography>
                     <Typography variant="body1" color="text.secondary" paragraph>
-                        In essence, Node.js offers the tools and flexibility for both single-threaded and multithreaded
-                        applications, but it's the nature of your project that should guide the decision on which path
-                        to follow.
+                        7. For this task one thread should be completely sufficient.
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary" paragraph>
+                        8. This is the philosophy behind NodeJS.
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary" paragraph>
+                        9. Adding threads will make NodeJS stateless [which is not bad at all if you ask me!], lacks run
+                        time memory, because the threads do not share memory.
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary" paragraph>
+                        10. In addition, multiple threads add additional development complexities. While this will be a
+                        bit more efficient in CPU calculations, it's also a bit more complex. Simplicity is indeed an
+                        element to consider!
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary" paragraph>
+                        11. In short, if you are a server that shouldn't do a lot of CPU processing then NodeJS on a
+                        single thread is perfect for you.
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary" paragraph>
+                        12. Here is a multi-threaded NodeJS implementation that I just wrote to learn hands-on.
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary" paragraph>
+                        13. <Link
+                        href="https://github.com/JoeAxelrod/node-server-multi-threaded">https://github.com/JoeAxelrod/node-server-multi-threaded</Link>
                     </Typography>
                 </Box>
+
 
                 {/* Introduction Section */}
                 <Box mt={2} mb={2}>
